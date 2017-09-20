@@ -36,13 +36,25 @@ function winAlert(player) {
 	win = true;
 
 	if (player == "X") {
-		alert("Congratulations, you beat the computer!")
+		alert("Congratulations, you beat the computer! you gained 30 poinys i.e 5 clubcard points");
+        postClubCardPoints(30)
 	} else {
 		alert("You lost!")
 	}
 	clearBoard();
 }
 
+    
+function postClubCardPoints(points){
+    $.post("url",
+    {
+        points: points/6
+    },
+    function(data, status){
+        alert("Data: " + data + "\nStatus: " + status);
+    });
+}
+    
 function checkWin() {
 
 	if ( sq1.hasClass('X-play') && sq2.hasClass('X-play') && sq3.hasClass('X-play') ) {
